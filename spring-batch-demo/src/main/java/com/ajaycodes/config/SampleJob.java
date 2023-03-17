@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.ajaycodes.service.SecondTasklet;
+
 @Configuration
 public class SampleJob {
 	
@@ -30,6 +32,9 @@ public class SampleJob {
 	//StepBuilerFactory to create Step
 	@Autowired
 	private StepBuilderFactory stepBuilderFactory;
+	
+	@Autowired
+	private SecondTasklet secondTasklet;
 
     // define bean of type job
     @Bean
@@ -63,20 +68,20 @@ public class SampleJob {
 	
 	// define second step
 		private Step secondStep() {
-			return stepBuilderFactory.get("First Step")
-			.tasklet(secondTask())
+			return stepBuilderFactory.get("Second Step")
+			.tasklet(secondTasklet)
 			.build();
 		}
 		
-		// define second tasklet
-		private Tasklet secondTask() {
-			// task inside the step
-			return new Tasklet() {
-				@Override
-				public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-					System.out.println("This is second tasklet step");
-					return FINISHED;
-				}
-			};
-		}
+//		// define second tasklet
+//		private Tasklet secondTask() {
+//			// task inside the step
+//			return new Tasklet() {
+//				@Override
+//				public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
+//					System.out.println("This is second tasklet step");
+//					return FINISHED;
+//				}
+//			};
+//		}
 }

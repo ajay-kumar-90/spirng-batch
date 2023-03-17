@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableBatchProcessing
-@ComponentScan("com.ajaycodes.config")
+@ComponentScan({"com.ajaycodes.config", "com.ajaycodes.service"})
 public class SpringbatchApplication {
 
 	public static void main(String[] args) {
